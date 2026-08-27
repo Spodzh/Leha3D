@@ -10,13 +10,15 @@ body {
     align-items: center;
     height: 100vh;
     overflow: hidden;
-    touch-action: none; /* отключаем скролл на телефоне */
+    touch-action: none;
 }
 canvas {
     display: block;
-    background: #222;
-    max-width: 100vw;
-    max-height: 100vh;
+    background: #000;
+    /* Растягиваем канвас на весь экран, сохраняя пропорции */
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
 }
 
 /* ---------- Сенсорные кнопки ---------- */
@@ -29,12 +31,12 @@ canvas {
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    pointer-events: none; /* клики проходят сквозь сетку, но кнопки их перехватывают */
+    pointer-events: none;
     touch-action: none;
 }
 
 .touch-btn {
-    pointer-events: auto;  /* кнопки реагируют */
+    pointer-events: auto;
     width: 70px;
     height: 70px;
     background: rgba(255, 255, 255, 0.25);
