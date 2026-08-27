@@ -1,19 +1,40 @@
-/* Сенсорное управление */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    touch-action: none; /* отключаем скролл на телефоне */
+}
+canvas {
+    display: block;
+    background: #222;
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
+/* ---------- Сенсорные кнопки ---------- */
 #touchControls {
+    display: grid;
+    grid-template-columns: 70px 70px 70px;
+    grid-template-rows: 70px 70px;
+    gap: 10px;
     position: absolute;
     bottom: 30px;
-    left: 0;
-    width: 100%;
-    pointer-events: none; /* чтобы клики проходили к канвасу, если надо, но кнопки будут перехватывать */
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
-    box-sizing: border-box;
-    touch-action: none; /* отключаем скролл при касании */
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none; /* клики проходят сквозь сетку, но кнопки их перехватывают */
+    touch-action: none;
 }
 
 .touch-btn {
-    pointer-events: auto; /* включаем обработку касаний */
+    pointer-events: auto;  /* кнопки реагируют */
     width: 70px;
     height: 70px;
     background: rgba(255, 255, 255, 0.25);
@@ -29,24 +50,13 @@
     touch-action: none;
     transition: background 0.1s;
 }
-.touch-btn:active, .touch-btn.active {
+
+.touch-btn:active,
+.touch-btn.active {
     background: rgba(255, 255, 255, 0.6);
 }
-/* Расположим кнопки: две сверху, две снизу (или как удобно) */
-#btnForward {
-    align-self: center;
-    margin-bottom: 20px;
-}
-#btnBack {
-    align-self: center;
-    margin-top: 20px;
-}
-#btnLeft {
-    align-self: center;
-    margin-right: auto;
-}
-#btnRight {
-    align-self: center;
-    margin-left: auto;
-}
-/* Можно сделать сетку 2x2, но пусть пока просто внизу */
+
+#btnForward { grid-column: 2; grid-row: 1; }
+#btnBack    { grid-column: 2; grid-row: 2; }
+#btnLeft    { grid-column: 1; grid-row: 2; }
+#btnRight   { grid-column: 3; grid-row: 2; }
