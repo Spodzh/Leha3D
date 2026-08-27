@@ -1,20 +1,52 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body {
-    background: #111;
+/* Сенсорное управление */
+#touchControls {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    width: 100%;
+    pointer-events: none; /* чтобы клики проходили к канвасу, если надо, но кнопки будут перехватывать */
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+    touch-action: none; /* отключаем скролл при касании */
+}
+
+.touch-btn {
+    pointer-events: auto; /* включаем обработку касаний */
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.25);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    color: white;
+    font-size: 30px;
+    display: flex;
     align-items: center;
-    height: 100vh;
-    overflow: hidden;
+    justify-content: center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+    transition: background 0.1s;
 }
-canvas {
-    display: block;
-    background: #222;
-    /* Канвас будет растягиваться под размер экрана, но сохранять пропорции */
-    max-width: 100vw;
-    max-height: 100vh;
+.touch-btn:active, .touch-btn.active {
+    background: rgba(255, 255, 255, 0.6);
 }
+/* Расположим кнопки: две сверху, две снизу (или как удобно) */
+#btnForward {
+    align-self: center;
+    margin-bottom: 20px;
+}
+#btnBack {
+    align-self: center;
+    margin-top: 20px;
+}
+#btnLeft {
+    align-self: center;
+    margin-right: auto;
+}
+#btnRight {
+    align-self: center;
+    margin-left: auto;
+}
+/* Можно сделать сетку 2x2, но пусть пока просто внизу */
